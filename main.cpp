@@ -3,8 +3,8 @@
 ** Date: 11-4-2018
 ** Description: The main file for the 162 Group Project 
 *********************************************************************/
-#include "Ant.hpp"
-#include "Board.hpp"
+#include "Game.hpp"
+
 
 #include <cstdlib>
 #include <ctime>
@@ -14,14 +14,8 @@ int main () {
 
 	srand(time(NULL));
 
-	Board * board = new Board;
-	Ant ant;
-	
-	for (int i = 0; i < 5; i++) {
-		
-		ant.move(board);
-		board->displayBoard();
-	}
+	Game game;
+	game.loop();	
 
 	return 0;
 }

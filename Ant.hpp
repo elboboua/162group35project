@@ -15,6 +15,7 @@ public:
 	virtual void move(Board * board);
 	virtual bool canBreed();
 
+	void randomPlacement(Board * board);
 };
 
 #endif // ANT_H

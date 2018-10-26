@@ -42,32 +42,36 @@ void Ant::move(Board * board) {
 		
 		// UP
 		case 0:
-			if (xLoc > 0 && board->isCharX(xLoc-1, yLoc, ' ')) {
-				xLoc--;
+			if (xLoc > 0) {
+				if (board->isCharX(xLoc-1, yLoc, ' ')) {
+					xLoc--;
+				}
 			}
-			std::cout << "UP" << std::endl;
 			break;
 
 		// RIGHT
 		case 1:
-			if (yLoc < board->getColumns() && board->isCharX(xLoc, yLoc+1, ' ')) {
-				yLoc++;
+			if (yLoc < board->getColumns()-1) {
+				if (board->isCharX(xLoc, yLoc+1, ' ')) {
+					yLoc++;
+				}
 			}
-			std::cout << "RIGHT" << std::endl;
 			break;
 		// DOWN
 		case 2:
-			if (xLoc < board->getRows() && board->isCharX(xLoc+1,yLoc, ' ')) {
-				xLoc++;
+			if (xLoc < board->getRows()-1) {
+				if (board->isCharX(xLoc+1,yLoc, ' ')) {
+					xLoc++;
+				}
 			}
-			std::cout << "DOWN" << std::endl;
 			break;
 		// LEFT
 		case 3:
-			if (yLoc > 0 && board->isCharX(xLoc, yLoc-1, ' ')) {
-				yLoc--;
+			if (yLoc > 0) {
+				if (board->isCharX(xLoc, yLoc-1, ' ')) {
+					yLoc--;
+				}
 			}
-			std::cout << "LEFT" << std::endl;
 			break;
 
 	}
@@ -78,3 +82,22 @@ void Ant::move(Board * board) {
 
 }
 
+// Places the ant in a random open location
+void Ant::randomPlacement(Board * board) {
+
+	bool placed = false;
+	int x,y;	
+
+	while (!placed) {
+		x = rand()%board->getRows();
+		y = rand()%board->getColumns();
+
+		if (board->isCharX(x,y,' ')) {
+			xLoc = x;
+			yLoc = y;
+			board->changeSpace(xLoc, yLoc, 'X');
+			placed = true;
+		}
+	
+	}
+}
