@@ -7,3 +7,6 @@ People in group:
   Ahmad El-Bobou
   Peter Mannisi
   Eben Wight
+
+How will we split the work?
+Ahmad - Board and Critter classes
