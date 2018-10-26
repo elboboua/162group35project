@@ -2,9 +2,9 @@
 
 CXXFLAGS = -std=c++0x
 
-SRCS = main.cpp Board.cpp
-OBJS = main.o Board.o
-HEADERS = Board.hpp
+SRCS = main.cpp Board.cpp Critter.cpp Ant.cpp
+OBJS = main.o Board.o Critter.o Ant.o
+HEADERS = Board.hpp Critter.hpp Ant.hpp
 
 
 output: $(OBJS) $(HEADERS)

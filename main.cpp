@@ -3,23 +3,25 @@
 ** Date: 11-4-2018
 ** Description: The main file for the 162 Group Project 
 *********************************************************************/
-
+#include "Ant.hpp"
 #include "Board.hpp"
+
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 int main () {
 
-	Board board;
-	board.displayBoard();
+	srand(time(NULL));
 
-	board.changeSpace(0,0,'X');
-
-	if (board.isCharX(0,0,' ')) {
-		std::cout << "It is blank" << std::endl;
-	} else {
-		std::cout << "ERROR" << std::endl;
+	Board * board = new Board;
+	Ant ant;
+	
+	for (int i = 0; i < 5; i++) {
+		
+		ant.move(board);
+		board->displayBoard();
 	}
 
-	board.displayBoard();
 	return 0;
 }

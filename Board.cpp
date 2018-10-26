@@ -27,6 +27,15 @@ Board::Board() {
 
 }
 
+int Board::getRows() {
+	return rows;
+}
+
+
+int Board::getColumns() {
+	return columns;
+}
+
 // This functions prints the board to the user
 void Board::displayBoard() {
      

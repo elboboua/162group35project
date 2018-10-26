@@ -2,6 +2,12 @@
 ** Description: The specification file for the Critter base class
 *********************************************************************/ 
 
+#ifndef CRITTER_H
+#define CRITTER_H
+
+
+#include "Board.hpp"
+
 class Critter {
 
 protected:
@@ -10,6 +16,8 @@ protected:
 	
 
 public:
+	Critter();	
+
 	int getXLoc();
 	int getYLoc();
 
@@ -17,6 +25,8 @@ public:
 	void setYLoc(int);
 
 
-	virtual void move() = 0;
+	virtual void move(Board * board) = 0;
+	virtual bool canBreed() = 0;
 };
 
+#endif // CRITTER_H

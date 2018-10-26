@@ -2,6 +2,10 @@
 ** Description: The specification file for the Board class
 *********************************************************************/
 
+
+#ifndef BOARD_H
+#define BOARD_H
+
 #include <string>
 
 
@@ -14,11 +18,11 @@ private:
 public:
 	Board();
 
-	int getWidth();
-	int getHeight();
+	int getRows();
+	int getColumns();
 
-	void setWidth(int);
-	void setHeight(int);
+	void setRows(int);
+	void setColumns(int);
 
 	void createBoard();
 	void displayBoard();
@@ -28,3 +32,5 @@ public:
 
 	~Board();
 }; 
+
+#endif // BOARD_H
