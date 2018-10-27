@@ -20,7 +20,7 @@ private:
 public: 
 	Game();
 	void loop();
-	void breedAnt();
+	void breedAnts();
 
 	// breedDoodlebug
 	// killDoodlebug

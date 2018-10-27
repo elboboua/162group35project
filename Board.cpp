@@ -5,11 +5,11 @@
 #include "Board.hpp"
 #include <iostream>
 
-Board::Board() {
+Board::Board(int rows, int columns) {
 
 	// the base dimensions of the board
-	rows = 20;
-	columns = 20;
+	this->rows = rows;
+	this->columns = columns;
 
 	// create the dynamic 2d string array
 	space = new char*[rows];

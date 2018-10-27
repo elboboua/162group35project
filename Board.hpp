@@ -16,7 +16,7 @@ private:
 	int columns;
 	char ** space;
 public:
-	Board();
+	Board(int,int);
 
 	int getRows();
 	int getColumns();

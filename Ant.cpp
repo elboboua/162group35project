@@ -79,7 +79,8 @@ void Ant::move(Board * board) {
 	// place ant in new location	
 	board->changeSpace(xLoc,yLoc, 'X');
 
-
+	// age the ant
+	turnsSinceBreeding++;
 }
 
 // Places the ant in a random open location
