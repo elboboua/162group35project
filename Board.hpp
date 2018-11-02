@@ -7,6 +7,7 @@
 
 #include "constants.hpp"
 #include <string>
+#include <vector>
 
 class Board {
 
@@ -22,6 +23,17 @@ class Board {
     static constexpr char ANT = 'O';
     static constexpr char BUG = 'X';
     static constexpr char SPACE = ' ';
+    const std::string inverted = "\033[7m";
+    const std::string reset = "\033[0m";
+    const std::string moveThismany = "\033[";
+    const std::string rowsUp = "A";
+    const std::string colsLeft = "D";
+    const std::string rowsDown = "B";
+    const std::string colsRight = "C";
+    const std::string offsetToInfoArea = "          "; // that's 10 spaces, or 5 "columns"
+    const int rowsOfInfo = 5;
+    const std::string bugMove = "bug moves to ";
+    const std::string antMove = "bug moves to ";
 
     int getRows();
     int getColumns();
@@ -31,6 +43,7 @@ class Board {
 
     void createBoard();
     void displayBoard();
+    void prettyDisplayBoard(std::vector<std::string> messages);
 
     void changeSpace(int x, int y, char c);
     bool isCharX(int x, int y, char c);

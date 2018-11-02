@@ -3,7 +3,9 @@
 *********************************************************************/
 
 #include "Board.hpp"
+#include <ctime>
 #include <iostream>
+#include <thread>
 
 Board::Board(int rows, int columns) {
 
@@ -67,6 +69,49 @@ void Board::displayBoard() {
             std::cout << std::endl;
         }
     }
+}
+
+// This functions prints the board to the user
+void Board::prettyDisplayBoard(std::vector<std::string> messages) {
+
+    int msgSize = messages.size();
+    int msgCount = 0;
+
+    bool white = false;
+    for (int i = 0; i < rows; i++) {
+
+        // goes through the elements and makes the board
+        for (int j = 0; j < columns; j++) {
+
+            white = ((i + j) % 2) == 1;
+            if (white) {
+                std::cout << "\033[22;100m";
+            } else {
+                std::cout << "\033[51;40m";
+            }
+            char thisChar = space[i][j];
+            if (thisChar == ANT)
+                std::cout << "\033[34m";
+            if (thisChar == BUG)
+                std::cout << "\033[31m";
+            std::cout << thisChar;
+            std::cout << ' ';
+            std::cout << reset;
+
+            if ((j == (columns - 1)) && (i < (rows - 1))) {
+                std::cout << reset;
+                if (msgCount < msgSize) {
+                    std::cout << "\033[0J" << offsetToInfoArea << messages[msgCount];
+                    msgCount++;
+                }
+                std::cout << "\n";
+            }
+        }
+    }
+    std::cout << "\033[" << (rows - 1) << "A"
+              << "\033[" << (columns * 2) << "D";
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(150));
 }
 
 // changes the space char
