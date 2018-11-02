@@ -130,8 +130,18 @@ bool Menu::stringInput(std::vector<std::string> prompt, std::string &input, int 
 
     while (!stringRead || !goodString) {
 
+        // TODO this is where the flag for the type of string to read should  come into play,
+        // right now this function is checking to see that only a single word was entered spaces break it
+
+        // if the type of strring to read is a multi-word input (as opposed to a filename or others) pass the
+        // nultiword boolean set to true. it'll still work this way as the other method is just calling the original version
+        // if that flag is false, but this is betterer i thinks
+        bool multiword = false;
+        if (type == FREEFORM) {
+            multiword = true;
+        }
         // try to read the single string
-        stringRead = inputHandler::readSingleString(input);
+        stringRead = inputHandler::readSingleString(input, multiword);
 
         // if it got read try to validate it as one of the known types
         if (stringRead) {
@@ -142,6 +152,13 @@ bool Menu::stringInput(std::vector<std::string> prompt, std::string &input, int 
                     if (!goodString) {
 
                         cout << PLEASE_FILENAME << endl; // stringValidationMessages[StringTypes::FILENAME] << endl;
+                    }
+                    break;
+                case FREEFORM:
+                    // no input validation for this type
+                    if (!goodString) {
+                        goodString = true;
+                        debug(input + " if there's something weird with that we'll have to address it");
                     }
                     break;
 
