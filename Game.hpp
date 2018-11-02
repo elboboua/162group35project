@@ -19,11 +19,20 @@ class Game {
     Doodlebug *bugs;
     int bugNum;
     Board *board;
+    int rounds;
+    std::vector<std::string> messages;
 
   public:
     Game();
+    void addRandomAnts(int antNum);
+    Ant *getAnt(int index);
+    Doodlebug *getBug(int index);
     void loop();
     void breedAnts();
+    int getAntNum();
+    void setAntNum(int antNum);
+    int getBugNum();
+    void setBugNum(int bugNum);
 
     // breedDoodlebug
     // killDoodlebug
