@@ -1,18 +1,23 @@
-/*********************************************************************
-** Description: The implementation file for the Ant derived class
-*********************************************************************/
+/**
+ * Author: Eben Wight
+ * Date: 2018/11/01
+ * Description: Dooodle bug is the predator, he moves and, if possible,
+ * his first move priority is to eat an ant in an adjacent cell
+ *
+ * inherits from Critter just like Ant does
+ **/
 
-#include "Ant.hpp"
+#include "Doodlebug.hpp"
 #include <cstdlib>
 #include <iostream>
-// The ant construct
-Ant::Ant() : Critter() {
+// The Doodlebug construct
+Doodlebug::Doodlebug() : Critter() {
 }
 
-// This function returns true if the ant can breed and false if not
-bool Ant::canBreed() {
+// This function returns true if the Doodlebug can breed and false if not
+bool Doodlebug::canBreed() {
 
-    if (turnsSinceBreeding == 3) {
+    if (turnsSinceBreeding >= 8) {
 
         turnsSinceBreeding = 0;
         return true;
@@ -22,8 +27,9 @@ bool Ant::canBreed() {
     }
 }
 
-// This function moves the ant
-void Ant::move(Board *board) {
+void Doodlebug::move(Board *board) {
+
+    checkSurroundings(board);
     // clear Previous location
     board->changeSpace(xLoc, yLoc, ' ');
 
@@ -32,7 +38,14 @@ void Ant::move(Board *board) {
 
     // once the place is changed, the previous place needs to be cleared.
 
-    int direction = rand() % 4;
+    // this is the special code for hunting ants
+    int direction = direction = rand() % 4;
+    ;
+    for (int s = 0; s < 4; s++) {
+        if (surroundings[s] == EntityTypes::ANT) {
+            direction = s;
+        }
+    }
 
     switch (direction) {
 
@@ -76,23 +89,4 @@ void Ant::move(Board *board) {
 
     // age the ant
     turnsSinceBreeding++;
-}
-
-// Places the ant in a random open location
-void Ant::randomPlacement(Board *board) {
-
-    bool placed = false;
-    int x, y;
-
-    while (!placed) {
-        x = rand() % board->getRows();
-        y = rand() % board->getColumns();
-
-        if (board->isCharX(x, y, ' ')) {
-            xLoc = x;
-            yLoc = y;
-            board->changeSpace(xLoc, yLoc, Board::ANT);
-            placed = true;
-        }
-    }
 }

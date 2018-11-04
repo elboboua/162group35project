@@ -13,7 +13,7 @@ namespace inputHandler {
 
 bool readSingleLine(std::string &input);
 
-bool readSingleString(std::string &input);
+bool readSingleString(std::string &input, bool multiline);
 
 bool readInt(int &input, bool signedInt);
 
@@ -30,6 +30,8 @@ bool validateIntRange(int input, int lower, int upper, bool inclusive);
 bool validateFileName(std::string &input);
 
 bool isDashOrDot(char thisChar);
+
+std::string stringifyArray(int *arr, int size);
 
 } // namespace inputHandler
 

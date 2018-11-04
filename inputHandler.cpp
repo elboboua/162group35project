@@ -26,14 +26,16 @@ bool readSingleLine(std::string &input) {
 
     input = tmp;
 
+    debug("readSingleLine() :read " + tmp);
     if (tmp.length() == 0) {
         // std::cout << "read blank line" << std::endl;
         debug("readSingleLine: read blank line");
         return false;
+    } else {
     }
 
     return true;
-}
+};
 
 /**
  * read in a single line from cin, containing one contiguous string
@@ -66,6 +68,38 @@ bool readSingleString(std::string &input) {
     }
 
     input = temp;
+    return goodString;
+}
+
+/**
+ * read in a single line from cin, containing one contiguous string
+ * no whitespace allowed
+ **/
+bool readSingleString(std::string &input, bool multiword) {
+
+    if (!multiword) {
+        return readSingleString(input);
+    }
+
+    int wordCount = 0;
+    std::string temp;
+    std::stringstream tempss;
+    bool lineRead = readSingleLine(temp);
+    bool goodString = true;
+    // read this repeatedly to see how many words it contains
+    std::stringstream instream;
+    instream << temp;
+
+    if (instream.good()) {
+        goodString = true;
+        input = instream.str();
+        return goodString;
+    } else {
+        goodString = false;
+        debug("readSingleString() : there was something wrong with instream: instream.rdstate() " + instream.rdstate());
+    }
+
+    input = "";
     return goodString;
 }
 /**
@@ -204,6 +238,19 @@ bool validateFileName(std::string &input) {
 bool isDashOrDot(char thisChar) {
 
     return ((thisChar == '-') || (thisChar == '_') || (thisChar == '.'));
+}
+
+std::string stringifyArray(int *arr, int size) {
+
+    std::stringstream out;
+    out << "[";
+    for (int i = 0; i < size; i++) {
+        out << arr[i] << ", ";
+    }
+
+    out << "]";
+
+    return out.str();
 }
 
 } // namespace inputHandler
