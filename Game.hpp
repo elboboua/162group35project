@@ -23,20 +23,19 @@ class Game {
     std::vector<std::string> messages;
 
   public:
-    Game();
-    void addRandomAnts(int antNum);
+    Game(int antNum = 200, int bugNum = 10);
+    void addBugsRandomly();
     Ant *getAnt(int index);
     Doodlebug *getBug(int index);
     void loop();
     void breedAnts();
+	void breedDoodlebugs();
     int getAntNum();
     void setAntNum(int antNum);
     int getBugNum();
     void setBugNum(int bugNum);
-
-    // breedDoodlebug
-    // killDoodlebug
-    // killAnt
+	void removeDeadAnt(Board *board);
+    void removeStarvedDoodlebug(Board * board);
 };
 
 #endif // GAME_H

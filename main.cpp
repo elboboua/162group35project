@@ -21,28 +21,8 @@ const std::string startingY = "'s starting Y position";
 int main() {
 
     Game game;
-    Menu menu;
+    //Menu menu;
 
-    int numAnts = 1;
-    int nnumBugs = 1;
-    menu.singleInteger(HowManyAnts, numAnts, false);
-
-    for (int a = 0; a < numAnts; a++) {
-
-        int startX = 3;
-        menu.singleInteger(antNo + std::to_string(a) + startingX, startX, false);
-
-        int startY = 3;
-        menu.singleInteger(antNo + std::to_string(a) + startingY, startY, false);
-    }
-
-    // const std::string bugsStartingX = "Doodlebug's starting X position";
-    // int bugX = 3;
-    // menu.singleInteger(bugsStartingX, bugX, false);
-    //
-    // const std::string bugsStartingY = "Doodlebug's starting Y position";
-    // int bugY = 3;
-    // menu.singleInteger(bugsStartingY, bugY, false);
     srand(time(NULL));
 
     game.loop();

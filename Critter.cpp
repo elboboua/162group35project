@@ -33,6 +33,13 @@ void Critter::setYLoc(int yLoc) {
 
 void Critter::checkSurroundings(Board *board) {
 
+	//starts making sure each surroundings  element is set to empty.
+	//this is to ensure this code does no create a seg fault
+	for (int i = 0; i < 4; i++) {
+		surroundings[i] = EntityTypes::EMPTY;
+	} 
+
+
     // when this loops throug 0 =3 those same index numbers refer to
     // the named enum's contained in board for UP, RIGHT, DOWN, LEFT,
     // it's just easier to write this way
@@ -42,35 +49,40 @@ void Critter::checkSurroundings(Board *board) {
         int y = this->yLoc;
         switch (i) {
             case UP: {
-                debug("critter.check Surroundings(), UP: ");
-                y--;
-                surroundings[UP] = board->checkSpace(x, y);
-
+				if (x > 0) {
+					debug("critter.check Surroundings(), UP: ");
+					x--;
+					surroundings[UP] = board->checkSpace(x, y);
+				}
             } break;
 
             case RIGHT: {
-                debug("critter.check Surroundings(), UP: ");
-                y--;
-                surroundings[RIGHT] = board->checkSpace(x, y);
-
+				if (y < board->getColumns()-1) {
+					debug("critter.check Surroundings(), UP: ");
+					y++;
+					surroundings[RIGHT] = board->checkSpace(x, y);
+				}
             } break;
 
             case DOWN: {
-                debug("critter.check Surroundings(), UP: ");
-                y--;
-                surroundings[DOWN] = board->checkSpace(x, y);
-
+				if (x < board->getRows()-1) {
+					debug("critter.check Surroundings(), UP: ");
+					x++;
+					surroundings[DOWN] = board->checkSpace(x, y);
+				}
             } break;
 
             case LEFT: {
-                debug("critter.check Surroundings(), UP: ");
-                y--;
-                surroundings[LEFT] = board->checkSpace(x, y);
-
+				if (y > 0) {	
+					debug("critter.check Surroundings(), UP: ");
+					y--;
+					surroundings[LEFT] = board->checkSpace(x, y);
+				}
             } break;
 
             default:
                 break;
+		
         }
     }
 }

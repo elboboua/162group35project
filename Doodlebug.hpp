@@ -14,15 +14,17 @@
 
 class Doodlebug : public Critter {
 
-  public:
-    Doodlebug();
-    virtual void move(Board *board);
-    virtual bool canBreed();
-    void spawn(Board *board);
-    void eat(Board *board);
-    void starve(Board *board);
+	private:
+		int turnsSinceEating;
 
-    void randomPlacement(Board *board);
+	public:
+		Doodlebug();
+		virtual void move(Board *board);
+		virtual bool canBreed();
+
+		bool hasStarved();		
+
+		void randomPlacement(Board *board);
 };
 
 #endif // DOODLEBUG

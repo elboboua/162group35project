@@ -111,7 +111,7 @@ void Board::prettyDisplayBoard(std::vector<std::string> messages) {
     std::cout << "\033[" << (rows - 1) << "A"
               << "\033[" << (columns * 2) << "D";
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(150));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
 // changes the space char
@@ -136,7 +136,8 @@ bool Board::isCharX(int x, int y, char c) {
 
 EntityTypes Board::checkSpace(int x, int y) {
 
-    if (((x < this->columns) || (x > this->columns)) || ((y < this->rows) || (y > this->rows))) {
+    //if (((x < this->columns) || (x > this->columns)) || ((y < this->rows) || (y > this->rows))) {
+    if (((x < 0) || (x >= this->columns)) || ((y < 0) || (y >= this->rows))) {
         return EntityTypes::OUT_OF_BOUNDS;
         std::cout << "hey, one of your x (" << x << "  ), or y( " << y << " )  values is OOB!: [ 0 =< x =< " << (this->columns - 1)
                   << "][0 <= y <= " << (this->rows - 1) << "]!" << std::endl;
