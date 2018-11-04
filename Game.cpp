@@ -3,6 +3,7 @@
 *********************************************************************/
 
 #include "Game.hpp"
+#include "inputHandler.hpp"
 #include <vector>
 
 void Game::addBugsRandomly() {
@@ -40,8 +41,11 @@ void Game::setAntNum(int antNum) {
 }
 
 void Game::loop() {
-
-    int rounds = 500;
+	
+    int rounds;
+	std::cout << "How many rounds would you like the simulation to run?" << std::endl;
+	rounds = inputHandler::isIntAboveX(0);
+	
     //std::cout << "Initial placement:" << std::endl;
 	addBugsRandomly();	
 	//board->displayBoard();
@@ -51,19 +55,17 @@ void Game::loop() {
 
     for (int i = 0; i < rounds; i++) {
         messages.push_back("Round " + std::to_string(i + 1) + ".");
-        for (int j = 0; j < antNum; j++) {
-            ant[j].move(board);
-        }
-
+		
 		for (int j = 0; j <bugNum; j++) { 
             bugs[j].move(board);
         }
-
-
-        breedAnts();
 		breedDoodlebugs();
-		
 		removeDeadAnt(board);
+        for (int j = 0; j < antNum; j++) {
+            ant[j].move(board);
+        }
+        breedAnts();
+		
 		removeStarvedDoodlebug(board);
 
 		//board->displayBoard();

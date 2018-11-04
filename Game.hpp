@@ -23,7 +23,7 @@ class Game {
     std::vector<std::string> messages;
 
   public:
-    Game(int antNum = 200, int bugNum = 10);
+    Game(int antNum = 100, int bugNum =5);
     void addBugsRandomly();
     Ant *getAnt(int index);
     Doodlebug *getBug(int index);

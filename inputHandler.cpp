@@ -11,6 +11,7 @@
 #include <iostream>
 #include <limits>
 #include <sstream>
+#include <string>
 
 namespace inputHandler {
 
@@ -252,5 +253,86 @@ std::string stringifyArray(int *arr, int size) {
 
     return out.str();
 }
+
+// checks if input is an int above parameter x
+int isIntAboveX(int x) {
+
+	std::string input;
+    bool good;
+
+    // two do while functions that check if the input is a digit and if it is above 0
+    do {
+        do  {
+            
+            good = true;
+
+            std::cin >> input;
+            
+            // goes through each element in the string to see if it is a digit
+            for (int i = 0; i < input.length(); i++) {
+
+                
+                if (!(isdigit(input[i]))) {
+                    good = false;
+                } 
+            }
+            if (!good) {
+				std::cout << "ERROR! INCORRECT INPUT!" << std::endl;
+				std::cout << "Please enter an integer above " << x << ":" << std::endl;
+            }
+        } while (!good);
+
+        if (!(stoi(input) > x)) {
+
+            std::cout << "ERROR! INCORRECT INPUT!" << std::endl;
+            std::cout << "Please enter an integer above " << x << ":" << std::endl;
+        }
+    } while (!(stoi(input) > x));
+    
+
+    // return the good input
+    return stoi(input);
+}
+
+// checks if input is an int above parameter x and below parameter y
+int isIntBetweenXAndY(int x, int y) {
+
+    std::string input;
+    bool good;
+
+    // two do while functions that check if the input is a digit and if it is above 0
+    do {
+        do  {
+            
+            good = true;
+
+            std::cin >> input;
+            
+            // goes through each element in the string to see if it is a digit
+            for (int i = 0; i < input.length(); i++) {
+
+                
+                if (!(isdigit(input[i]))) {
+                    good = false;
+                } 
+            }
+            if (!good) {
+               std::cout << "ERROR! INCORRECT INPUT!" << std::endl;
+               std::cout << "Please enter an integer between " << x << " and " << y << ":" << std::endl;
+            }
+        } while (!good);
+
+        if ( stoi(input) < x || stoi(input) > y ) {
+
+            std::cout << "ERROR! INCORRECT INPUT!" << std::endl;
+               std::cout << "Please enter an integer between " << x << " and " << y << ":" << std::endl;
+        }
+    } while ( stoi(input) < x || stoi(input) > y );
+    
+
+    // return the good input
+    return stoi(input);
+}
+
 
 } // namespace inputHandler

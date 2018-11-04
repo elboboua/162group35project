@@ -12,7 +12,6 @@ SRCS += Ant.cpp
 SRCS += Doodlebug.cpp
 SRCS += Critter.cpp
 SRCS += inputHandler.cpp
-SRCS += Menu.cpp
 SRCS += logger.cpp
 
 OBJS = main.o 
@@ -22,11 +21,14 @@ OBJS += Doodlebug.o
 OBJS += Critter.o
 OBJS += Game.o
 OBJS += inputHandler.o
-OBJS += Menu.o
 OBJS += logger.o
 
 HEADERS = Board.hpp
-
+HEADERS += Game.hpp
+HEADERS += Critter.hpp
+HEADERS += Ant.hpp
+HEADERS += Doodlebug.hpp
+HEADERS += inputHandler.cpp
 
 output: $(OBJS) $(HEADERS)
 	g++ $(OBJS) ${CXXFLAGS}  -o output

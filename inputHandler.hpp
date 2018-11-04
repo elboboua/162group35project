@@ -33,6 +33,9 @@ bool isDashOrDot(char thisChar);
 
 std::string stringifyArray(int *arr, int size);
 
+int isIntAboveX(int x);
+int isIntBetweenXAndY(int x, int y);
+
 } // namespace inputHandler
 
 #endif

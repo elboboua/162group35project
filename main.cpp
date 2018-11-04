@@ -4,28 +4,38 @@
 ** Description: The main file for the 162 Group Project
 *********************************************************************/
 #include "Game.hpp"
-#include "Menu.hpp"
 #include "inputHandler.hpp"
 
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 
-// menu choice and prompt constants
-const std::string HowManyAnts = "How Many Ants would you like to spawn?";
-const std::string HowManBugs = "How Many Doodlebugs would you like to spawn?";
-const std::string antNo = "Ant No. ";
-const std::string bugNo = "Doodlebug No. ";
-const std::string startingX = "'s starting X position";
-const std::string startingY = "'s starting Y position";
 int main() {
 
-    Game game;
-    //Menu menu;
+	bool quit = false;
 
-    srand(time(NULL));
 
-    game.loop();
+	// simple menu loop for the one input we need to check
+	while (!quit) {
+			
+		int input;
 
+		Game game;
+		srand(time(NULL));
+		
+		game.loop();
+
+		// separate the boards
+		for (int i = 0; i < 20; i ++) {
+			std::cout << std::endl;
+		}
+		std::cout << "Would you like to run the simulation again?" << std::endl;
+		std::cout << "Enter 1 for yes, 0 for no: " << std::endl;
+		input = inputHandler::isIntBetweenXAndY(0,1);	
+
+		if (input == 0) {
+			quit = true;
+		}
+	}
     return 0;
 }
